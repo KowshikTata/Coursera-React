@@ -107,7 +107,7 @@ toggleModal() {
         
         const cmnts = comments.map(comment => {
             return (
-                <Fade in>
+                <Fade in >
                 <li key={comment.id}>
                     <p>{comment.comment}</p>
                     <p>-- {comment.author},

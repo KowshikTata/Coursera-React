@@ -21,8 +21,10 @@ class Contact extends Component {
     }
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+    
         this.props.resetFeedbackForm();//resetting
+        this.props.postFeedback(values.firstname,values.lastname,values.telnum,values.email,values.agree,values.contactType,values.comment);
+        
         
     }
     
@@ -186,7 +188,20 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.textarea model=".message" id="message" name="message"
                                         rows="12"
-                                        className="form-control" />
+                                        className="form-control" validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(15)
+                                        }} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".message"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be greater than 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                            
+                                        }}
+                                     />     
                                 </Col>
                             </Row>
                             <Row className="form-group">
